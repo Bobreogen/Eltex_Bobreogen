@@ -5,7 +5,9 @@ import ru.bobreogen.lab1.Drink;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class ShoppingCart {
+public class ShoppingCart<T extends Drink> {
+
+    private T dr;
 
     private ArrayList<Drink> list = new ArrayList<>();
     HashSet<Integer> idSet = new HashSet<>();
@@ -21,7 +23,7 @@ public class ShoppingCart {
         return null;
     }
 
-    public void add(Drink dr){
+    public void add(T dr){
         idSet.add(dr.getID());
         list.add(dr);
     }
@@ -36,7 +38,7 @@ public class ShoppingCart {
         list.remove(index);
     }
 
-    public void delete(Drink dr){
+    public void delete(T dr){
         list.remove(dr);
     }
 

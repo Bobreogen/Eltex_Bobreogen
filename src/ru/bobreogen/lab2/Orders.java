@@ -4,7 +4,7 @@ package ru.bobreogen.lab2;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-public class Orders {
+public class Orders<T extends Order> {
 
     LinkedList<Order> orders = new LinkedList<>();
     HashMap<Long, Order> times = new HashMap<>();

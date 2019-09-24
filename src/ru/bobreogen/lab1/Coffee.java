@@ -1,33 +1,27 @@
-package ru.bobreogen.core;
+package ru.bobreogen.lab1;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class Coffee extends Drink {
     private String typeCoffee;
 
-    Coffee(){
-        id = UUID.randomUUID();
+    public Coffee(){
+        this.setId(UUID.randomUUID());
     }
 
     @Override
     public void delete() {
         super.delete();
         typeCoffee = "";
-
-        
     }
 
     @Override
     public void update(){
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         super.update();
-        try{
-            typeCoffee = reader.readLine();} catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.print("Type coffee: ");
+        typeCoffee = (new Scanner(System.in)).nextLine();
     }
 
     @Override

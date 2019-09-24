@@ -1,14 +1,13 @@
-package ru.bobreogen.core;
+package ru.bobreogen.lab1;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.UUID;
 
 
 public abstract class Drink implements ICrudAction {
 
-    UUID id;
+    private UUID id;
     private String name;
     private int price;
     private static int goodsCount = 0;
@@ -19,6 +18,10 @@ public abstract class Drink implements ICrudAction {
 
     Drink(){
         id = UUID.randomUUID();
+    }
+
+    public void setId(UUID id){
+        this.id = id;
     }
 
     public void create(){
@@ -42,19 +45,15 @@ public abstract class Drink implements ICrudAction {
     }
 
     public void update(){
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.print("Name: ");
-            name = reader.readLine();
-            System.out.print("Price: ");
-            price = Integer.parseInt(reader.readLine());
-            System.out.print("Firm supplier: ");
-            firmSupplier = reader.readLine();
-            System.out.print("Producer country: ");
-            producerCountry = reader.readLine();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Name: ");
+        name = sc.nextLine();
+        System.out.print("Price: ");
+        price = Integer.parseInt(sc.nextLine());
+        System.out.print("Firm supplier: ");
+        firmSupplier = sc.nextLine();
+        System.out.print("Producer country: ");
+        producerCountry = sc.nextLine();
         if(!isCreate){
             goodsCount++;
             isCreate = true;

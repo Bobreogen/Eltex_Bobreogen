@@ -1,15 +1,14 @@
-package ru.bobreogen.core;
+package ru.bobreogen.lab1;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class Tea extends Drink {
     private String typeContainer;
 
-    Tea(){
-        id = UUID.randomUUID();
+    public Tea(){
+        this.setId(UUID.randomUUID());
     }
 
     @Override
@@ -26,14 +25,9 @@ public class Tea extends Drink {
 
     @Override
     public void update(){
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         super.update();
-        try{
-            System.out.print("Type container: ");
-            typeContainer = reader.readLine();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        System.out.print("Type container: ");
+        typeContainer = (new Scanner(System.in)).nextLine();
     }
 
     @Override

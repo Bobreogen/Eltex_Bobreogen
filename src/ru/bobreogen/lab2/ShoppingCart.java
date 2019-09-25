@@ -10,7 +10,7 @@ public class ShoppingCart<T extends Drink> {
     private T dr;
 
     private ArrayList<Drink> list = new ArrayList<>();
-    HashSet<Integer> idSet = new HashSet<>();
+    private HashSet<Integer> idSet = new HashSet<>();
 
     public Drink search(int id){
         if (idSet.contains(id)){
@@ -28,7 +28,7 @@ public class ShoppingCart<T extends Drink> {
         list.add(dr);
     }
 
-    public void showAll(){
+    void showAll(){
         for (Drink dr : list) {
             dr.read();
         }

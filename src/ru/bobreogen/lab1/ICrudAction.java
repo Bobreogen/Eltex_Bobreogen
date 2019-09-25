@@ -1,6 +1,6 @@
 package ru.bobreogen.lab1;
 
-public interface ICrudAction {
+interface ICrudAction {
     void create();
     void read();
     void update();

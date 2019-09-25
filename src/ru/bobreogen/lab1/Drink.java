@@ -20,7 +20,7 @@ public abstract class Drink implements ICrudAction {
         id = UUID.randomUUID();
     }
 
-    public void setId(UUID id){
+    void setId(UUID id){
         this.id = id;
     }
 

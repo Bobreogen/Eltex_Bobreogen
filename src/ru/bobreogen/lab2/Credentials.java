@@ -13,7 +13,7 @@ public class Credentials {
         id = UUID.randomUUID();
     }
 
-    int getId() {
+    public int getId() {
         return id.hashCode();
     }
 

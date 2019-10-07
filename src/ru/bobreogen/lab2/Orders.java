@@ -15,6 +15,22 @@ public class Orders<T extends Order> {
         times.put(order.getTimeCreate(), order);
     }
 
+    public Order get(int index){
+        return orders.get(index);
+    }
+
+    public int size(){
+        return orders.size();
+    }
+
+    public void delete(int index){
+        orders.remove(index);
+    }
+
+    public LinkedList<Order> getList(){
+        return orders;
+    }
+
     public void Check(){
         Iterator<Order> i = orders.iterator();
         while(i.hasNext()){

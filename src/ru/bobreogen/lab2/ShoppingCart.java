@@ -1,9 +1,12 @@
 package ru.bobreogen.lab2;
 
+import ru.bobreogen.lab1.Coffee;
 import ru.bobreogen.lab1.Drink;
+import ru.bobreogen.lab1.Tea;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 
 public class ShoppingCart<T extends Drink> {
 
@@ -21,6 +24,22 @@ public class ShoppingCart<T extends Drink> {
             }
         }
         return null;
+    }
+
+    public ShoppingCart CreateRandom(){
+        Random r = new Random();
+        for(int i = 0; i < r.nextInt(15) + 1; i++){
+            if(r.nextBoolean()){
+                Coffee cf = new Coffee();
+                cf.create();
+                list.add(cf);
+            }else{
+                Tea t = new Tea();
+                t.create();
+                list.add(t);
+            }
+        }
+        return this;
     }
 
     public void add(T dr){

@@ -17,11 +17,11 @@ public class Order {
 
     private Credentials credentials;
 
-    boolean isStatusOrder() {
+    public boolean isStatusOrder() {
         return statusOrder;
     }
 
-    void setStatusOrder(boolean statusOrder) {
+    public void setStatusOrder(boolean statusOrder) {
         this.statusOrder = statusOrder;
     }
 
@@ -51,6 +51,10 @@ public class Order {
 
     Credentials getCredentials() {
         return credentials;
+    }
+
+    public int getCrID(){
+        return credentials.getId();
     }
 
     void setCredentials(Credentials credentials) {

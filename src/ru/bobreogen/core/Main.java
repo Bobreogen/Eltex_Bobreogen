@@ -24,6 +24,7 @@ public class Main {
         ACheckProcessed aCheckProcessed = new ACheckProcessed(orders, 2500);
 
         Scanner sc = new Scanner(System.in);
+
         while(true){
             int a = sc.nextInt();
             if(a == 1){

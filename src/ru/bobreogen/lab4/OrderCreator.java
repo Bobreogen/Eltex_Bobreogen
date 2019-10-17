@@ -27,7 +27,7 @@ public class OrderCreator extends TimerTask {
         Credentials cr = new Credentials();
         cr.create();
         System.out.println("Order " + cr.getId() + " is create");
-        ord.makeAPurchase((new ShoppingCart()).CreateRandom(), cr, (new Random()).nextInt(20000));
+        ord.makeAPurchase(new Order(),(new ShoppingCart()).CreateRandom(), cr, (new Random()).nextInt(20000));
     }
 
     @Override

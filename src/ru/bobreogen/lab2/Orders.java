@@ -6,13 +6,21 @@ import java.util.Iterator;
 import java.util.LinkedList;
 public class Orders<T extends Order> {
 
-    private LinkedList<Order> orders = new LinkedList<>();
-    private HashMap<Long, Order> times = new HashMap<>();
+    private LinkedList<T> orders = new LinkedList<>();
+    private HashMap<Long, T> times = new HashMap<>();
 
-    public void makeAPurchase(ShoppingCart cart, Credentials credentials, long time){
+    public void add(T t){
+        orders.add(t);
+    }
+
+    public void makeAPurchase(T t, ShoppingCart cart, Credentials credentials, long time){
+        t.setStatusOrder(false);
+        t.setCart(cart);
+        t.setCredentials(credentials);
+        t.setTimeWait(time);
         Order order = new Order(cart, credentials, time);
-        orders.add(order);
-        times.put(order.getTimeCreate(), order);
+        orders.add(t);
+        times.put(order.getTimeCreate(), t);
     }
 
     public Order get(int index){
@@ -27,12 +35,12 @@ public class Orders<T extends Order> {
         orders.remove(index);
     }
 
-    public LinkedList<Order> getList(){
+    public LinkedList<T> getList(){
         return orders;
     }
 
     public void Check(){
-        Iterator<Order> i = orders.iterator();
+        Iterator<T> i = orders.iterator();
         while(i.hasNext()){
             Order order = i.next();
             if(order.getTimeCreate() + order.getTimeWait() > System.currentTimeMillis() && order.isStatusOrder()){

@@ -14,18 +14,16 @@ public class ACheckWaiting extends ACheck {
     }
 
     @Override
-    void check(Orders<Order> orders) {
-        synchronized(this) {
+    synchronized void check(Orders<Order> orders) {
             Order order;
             int ID;
             for (int i = 0; i < orders.size(); i++) {
                 order = orders.get(i);
                 if (!order.isStatusOrder()) {
-                    ID = order.getCrID();
+                    ID = order.getID();
                     order.setStatusOrder(true);
                     System.out.println("Order " + ID + " is processed.");
                 }
             }
-        }
     }
 }

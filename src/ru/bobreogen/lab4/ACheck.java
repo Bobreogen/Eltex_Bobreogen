@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class ACheck extends TimerTask {
     private Orders<Order> orders;
-    private Timer timer = null;
     ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
 
     public ACheck(Orders<Order> orders){
@@ -22,8 +21,6 @@ public abstract class ACheck extends TimerTask {
     public ACheck(Orders<Order> orders, int period) {
         this.orders = orders;
 
-        timer = new Timer(true);
-
         if(period > 0) {
             executorService.scheduleAtFixedRate(this, 0, period, TimeUnit.MILLISECONDS);
         }
@@ -31,7 +28,6 @@ public abstract class ACheck extends TimerTask {
 
     abstract void check(Orders<Order> orders);
 
-    //Для старта в отдельном потоке необходимо запускать этот метод
     public void startCheck() {
         executorService.schedule(this, 0, TimeUnit.MILLISECONDS);;
     }

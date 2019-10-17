@@ -53,6 +53,14 @@ public class ShoppingCart<T extends Drink> {
         }
     }
 
+    public Drink get(int index){
+        return list.get(index);
+    }
+
+    public int size(){
+        return list.size();
+    }
+
     public void delete(int index){
         list.remove(index);
     }

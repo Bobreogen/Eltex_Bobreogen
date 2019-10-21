@@ -1,8 +1,9 @@
 package ru.bobreogen.lab2;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Credentials {
+public class Credentials implements Serializable {
     private UUID id;
     private String firstName;
     private String lastName;

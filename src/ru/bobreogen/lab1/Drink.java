@@ -1,11 +1,12 @@
 package ru.bobreogen.lab1;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.UUID;
 
 
-public abstract class Drink implements ICrudAction {
+public class Drink implements ICrudAction, Serializable {
 
     private UUID id;
     private String name;

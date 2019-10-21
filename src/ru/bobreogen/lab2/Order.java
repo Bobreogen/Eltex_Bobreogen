@@ -1,18 +1,18 @@
 package ru.bobreogen.lab2;
 
-
 import java.io.Serializable;
 import java.util.UUID;
 
 public class Order implements Serializable {
     private boolean statusOrder = false; //false - в ожидании, true - выполнен
-    private long timeCreate;
-    private long timeWait;
+    private long timeCreate = System.currentTimeMillis();
+    private long timeWait = 0;
     private int id;
+    private ShoppingCart cart;
+    private Credentials credentials;
+
 
     public Order(){
-        timeCreate = 0;
-        timeWait = 0;
         id = UUID.randomUUID().hashCode();
     }
 
@@ -20,13 +20,8 @@ public class Order implements Serializable {
         this.cart = cart;
         this.credentials = credentials;
         this.timeWait = timeWait;
-        timeCreate = System.currentTimeMillis();
         id = UUID.randomUUID().hashCode();
     }
-
-    private ShoppingCart cart;
-
-    private Credentials credentials;
 
     public boolean isStatusOrder() {
         return statusOrder;
@@ -38,10 +33,6 @@ public class Order implements Serializable {
 
     long getTimeCreate() {
         return timeCreate;
-    }
-
-    void setTimeCreate(long timeCreate) {
-        this.timeCreate = timeCreate;
     }
 
     long getTimeWait() {
@@ -70,6 +61,14 @@ public class Order implements Serializable {
 
     void setCredentials(Credentials credentials) {
         this.credentials = credentials;
+    }
+
+    public Order createRandom(){
+        cart = new ShoppingCart().CreateRandom();
+        credentials = new Credentials(); credentials.create();
+        id = UUID.randomUUID().hashCode();
+        timeWait = 10000;
+        return this;
     }
 
 }

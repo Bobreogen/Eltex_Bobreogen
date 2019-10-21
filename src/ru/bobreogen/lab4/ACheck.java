@@ -3,7 +3,6 @@ package ru.bobreogen.lab4;
 import ru.bobreogen.lab2.Order;
 import ru.bobreogen.lab2.Orders;
 
-import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -12,13 +11,13 @@ import java.util.concurrent.TimeUnit;
 
 public abstract class ACheck extends TimerTask {
     private Orders<Order> orders;
-    ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
+    private ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
 
-    public ACheck(Orders<Order> orders){
+    ACheck(Orders<Order> orders){
         this.orders = orders;
     }
 
-    public ACheck(Orders<Order> orders, int period) {
+    ACheck(Orders<Order> orders, int period) {
         this.orders = orders;
 
         if(period > 0) {

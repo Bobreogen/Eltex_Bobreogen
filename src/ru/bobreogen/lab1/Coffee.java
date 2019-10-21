@@ -1,10 +1,11 @@
 package ru.bobreogen.lab1;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class Coffee extends Drink {
+public class Coffee extends Drink implements Serializable {
     private String typeCoffee;
 
     public Coffee(){

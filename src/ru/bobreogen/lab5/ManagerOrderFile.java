@@ -7,13 +7,19 @@ import java.io.*;
 public class ManagerOrderFile extends AManageOrder {
 
 
-    ManagerOrderFile(Orders orders){
+    public ManagerOrderFile(Orders<Order> orders){
         super(orders);
     }
 
     public void saveFile(Order order){
         try {
-            FileOutputStream fos = new FileOutputStream(directory + order.getID() + ".order");
+            File file = new File(directory + order.getID() + ".jsorder");
+            file.createNewFile();
+            System.out.println(file.getAbsolutePath());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try(FileOutputStream fos = new FileOutputStream(directory + order.getID() + ".order")) {
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(order);
         } catch (Exception e) {
@@ -22,18 +28,19 @@ public class ManagerOrderFile extends AManageOrder {
     }
 
     public Order readFile(int id){
-        Order order = null;
+        Order order = new Order();
         try(FileInputStream fis = new FileInputStream(directory + id + ".order")){
             ObjectInputStream ois = new ObjectInputStream(fis);
             order = (Order) ois.readObject();
         }catch(Exception e){
             e.printStackTrace();
+            return null;
         }
         return order;
     }
 
     public Orders readAll(){
-        Orders orders = null;
+        Orders<Order> orders = new Orders<>();
         File folder = new File(directory);
 
         String[] files = folder.list((folder1, name) -> name.endsWith(".order"));

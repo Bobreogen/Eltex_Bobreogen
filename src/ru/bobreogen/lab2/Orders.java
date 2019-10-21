@@ -18,9 +18,8 @@ public class Orders<T extends Order> {
         t.setCart(cart);
         t.setCredentials(credentials);
         t.setTimeWait(time);
-        Order order = new Order(cart, credentials, time);
         orders.add(t);
-        times.put(order.getTimeCreate(), t);
+        times.put(t.getTimeCreate(), t);
     }
 
     public Order get(int index){
@@ -51,7 +50,7 @@ public class Orders<T extends Order> {
     }
 
     public void showAll(){
-        for (Order order : orders) {
+        for (T order : orders) {
             System.out.println(order.getCredentials().getId());
             order.getCart().showAll();
         }

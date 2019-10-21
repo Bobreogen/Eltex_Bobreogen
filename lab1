@@ -1,0 +1,42 @@
+#!/bin/bash
+h1=5
+h2=10
+h3=20
+split="_"
+if [ -n "$5" ]; then
+if ! [ -d $1 ]; then
+mkdir -p $1
+fi
+h1=$2
+h2=$3
+h3=$4
+split=$5
+fi
+if ! [ -d lab/ ]; then
+mkdir lab
+fi
+cd lab
+for (( i=1; i <= h1; i++ ))
+do
+if ! [ -d $i/ ]; then
+mkdir $i
+fi
+cd $i
+for (( j=1; j <= h2; j++ ))
+do
+if ! [ -d $i$split$j ]; then
+mkdir $i$split$j
+fi
+cd $i$split$j
+for (( k=1; k <= h3; k++ ))
+do
+if ! [ -f $i$split$j$split$k ]; then
+touch $i$split$j$split$k
+fi
+done
+cd ..
+done
+cd ..
+done
+cd ..
+

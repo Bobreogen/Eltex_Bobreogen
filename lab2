@@ -1,0 +1,38 @@
+#!/bin/bash
+user=$USER
+scr="mplayer $1"
+
+function delete() {
+	touch ./alarm.temp
+	while IFS= read -r line; do
+		if [ "$line" != "$1 $2 * * * $user $scr" ]; then
+			echo "$line" >> ./alarm.temp
+		fi
+	done < ./alarm
+	cp ./alarm.temp ./alarm
+	rm ./alarm.temp
+}
+
+function edit() {
+	while IFS= read -r line; do
+		if [ "$line" == "$1 $2 * * * $user $scr" ]; then
+			echo "$3 $4 * * * $user $scr" >> ./alarm
+			delete $1 $2
+		fi
+	done < ./alarm
+}
+
+if [ "#!" == "5" ]; then
+	edit $2 $3 $4 $5
+fi
+if [ "#!" == "4" ]; then
+	delete $2 $3
+fi
+if [ "#!" == "3" ]; then
+	echo "$2 $3 * * * $user $scr" >> ./alarm
+fi
+if [ "#!" == "0" ]; then
+	while IFS= read -r line; do
+		echo $line
+	done < ./alarm
+fi

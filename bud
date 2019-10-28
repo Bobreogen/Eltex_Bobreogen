@@ -1,0 +1,2 @@
+#!/bin/bash
+./bud1 | mplayer $1

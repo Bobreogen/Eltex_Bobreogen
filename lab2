@@ -1,11 +1,12 @@
 #!/bin/bash
-user=$USER
-scr="mplayer $1"
+pathTo="$(dirname $(realpath lab2))"
+crontab -l > alarm
+scr="$pathTo/bud $1 #bud"
 
 function delete() {
 	touch ./alarm.temp
 	while IFS= read -r line; do
-		if [ "$line" != "$1 $2 * * * $user $scr" ]; then
+		if [ "$line" != "$1 $2 * * * $scr" ]; then
 			echo "$line" >> ./alarm.temp
 		fi
 	done < ./alarm
@@ -15,24 +16,25 @@ function delete() {
 
 function edit() {
 	while IFS= read -r line; do
-		if [ "$line" == "$1 $2 * * * $user $scr" ]; then
-			echo "$3 $4 * * * $user $scr" >> ./alarm
+		if [ "$line" == "$1 $2 * * * $scr" ]; then
+			echo "$3 $4 * * * $scr" >> ./alarm
 			delete $1 $2
 		fi
 	done < ./alarm
 }
 
-if [ "#!" == "5" ]; then
+if [ "$#" == "5" ]; then
 	edit $2 $3 $4 $5
 fi
-if [ "#!" == "4" ]; then
+if [ "$#" == "4" ]; then
 	delete $2 $3
 fi
-if [ "#!" == "3" ]; then
-	echo "$2 $3 * * * $user $scr" >> ./alarm
+if [ "$#" == "3" ]; then
+	echo "$2 $3 * * * $scr" >> ./alarm
 fi
-if [ "#!" == "0" ]; then
-	while IFS= read -r line; do
-		echo $line
-	done < ./alarm
+if [ "$#" == "0" ]; then
+	out= grep "#bud" ./alarm
+	echo "$out"
 fi
+
+crontab alarm
